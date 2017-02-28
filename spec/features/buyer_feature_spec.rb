@@ -18,6 +18,12 @@ feature 'Buyer can sign in and out' do
      expect(current_path).to eq('/offers')
    end
 
+   it "should be able to visit their profile" do
+     save_and_open_page
+     click_link 'Profile'
+     expect(page).to have_content 'Mike'
+   end
+
   #  it "should not see a 'sign in' link and a 'sign up' link" do
   #    visit('/offers')
   #    expect(page).not_to have_link('Sign in')

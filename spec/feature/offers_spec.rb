@@ -17,10 +17,4 @@ feature 'offers' do
     #   expect(page).to "Purchase Confirmed"
     # end
 
-    scenario 'Go to profile page' do
-      visit '/offers'
-      click_link 'Profile'
-      expect(page).to have_content 'Welcome!'
-    end
-
 end
