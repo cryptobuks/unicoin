@@ -11,10 +11,12 @@ feature 'offers' do
       expect(page).to have_content('10')
     end
 
-    # scenario 'Buyer can buy coins' do
-    #   visit '/offers'
-    #   click_link 'Buy'
-    #   expect(page).to "Purchase Confirmed"
-    # end
+    scenario 'Buyer can buy coins' do
+      Offer.create(number_of_coins: 1, price_per_coin: 10, status:'Open')
+      visit '/offers'
+      save_and_open_page
+      click_link 'Buy now'
+      expect(page).to have_content "Sold"
+    end
 
 end
