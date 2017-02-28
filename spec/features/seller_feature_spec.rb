@@ -11,7 +11,7 @@ describe 'Seller' do
       fill_in 'Password', with: 'abc123'
       fill_in 'Password confirmation', with: 'abc123'
       click_button 'Sign up'
-      expect(path).to eq '/'
+      expect(current_path).to eq '/'
     end
   end
 end

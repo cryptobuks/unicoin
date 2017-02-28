@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # root => 'offers#index'
+  root 'main#index'
+  get 'main' => 'main#index'
   resources :offers
   devise_for :buyers
   devise_for :sellers
