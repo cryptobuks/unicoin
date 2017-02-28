@@ -1,39 +1,43 @@
 // Place all the styles related to the Main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+//
 @mixin centerer {
  position: absolute;
  top: 50%;
  left: 50%;
  transform: translate(-50%, -50%);
+ background-color: transparent !important;
 }
 @mixin left {
  position: absolute;
  top: 50%;
  left: 25%;
- transform: translate(-25%, -75%);
+ // transform: translate(-25%, -30%);
 }
-@mixin right {
- position: absolute;
- top: 50%;
- left: 75%;
- transform: translate(-75%, -75%);
-}
-
-.welcome{
-  color: white;
-  text-align: center;
-}
-
+// @mixin right {
+//  position: absolute;
+//  top: 50%;
+//  left: 75%;
+//  transform: translate(-75%, -75%);
+// }
+//
+// .welcome{
+//   color: white;
+//   text-align: center;
+// }
+//
 .buyer{
   @include left;
-  color: white;
+  // color: white;
   align: left;
 }
 
-.seller{
-  @include right;
-  color: white;
-  align: right;
+.jumbotron{
+  @include centerer
+}
+
+a {
+    color: #ffffff !important;
+    text-decoration: none;
 }
