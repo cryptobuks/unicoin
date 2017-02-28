@@ -20,9 +20,7 @@ feature 'offers' do
     scenario 'Go to profile page' do
       visit '/offers'
       click_link 'Profile'
-      expect(page).to have_content 'Welcome '
+      expect(page).to have_content 'Welcome!'
     end
-
-
 
 end

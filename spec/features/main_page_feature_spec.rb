@@ -29,6 +29,4 @@ describe 'Main Page' do
     end
   end
 
-
-
 end
