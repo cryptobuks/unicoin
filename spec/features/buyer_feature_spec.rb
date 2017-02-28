@@ -19,7 +19,6 @@ feature 'Buyer can sign in and out' do
    end
 
    it "should be able to visit their profile" do
-     save_and_open_page
      click_link 'Profile'
      expect(page).to have_content 'Mike'
    end

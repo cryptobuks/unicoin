@@ -6,7 +6,7 @@ feature 'Seller can sign in and out' do
     before do
      visit('/')
      click_link('Seller Sign Up')
-     fill_in 'Name', with: 'Mike'
+     fill_in 'Name', with: 'Mike the Seller'
      fill_in 'Email', with: 'mike@test.com'
      fill_in 'Password', with: 'abc123'
      fill_in 'Password confirmation', with: 'abc123'
@@ -16,6 +16,11 @@ feature 'Seller can sign in and out' do
    it "should see 'sign out' link" do
      expect(page).to have_link('Sign Out')
      expect(current_path).to eq('/offers')
+   end
+
+   it "should be able to visit their profile" do
+     click_link 'Profile'
+     expect(page).to have_content 'Mike the Seller'
    end
  end
 end

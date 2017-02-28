@@ -17,3 +17,4 @@
 
     - if seller_signed_in?
       = link_to "Sign Out", destroy_seller_session_path, method: :delete
+      = link_to 'Profile', "/sellers/#{current_seller.id}"
