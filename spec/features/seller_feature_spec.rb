@@ -1,17 +1,21 @@
 require 'rails_helper'
 
-describe 'Seller' do
+feature 'Seller can sign in and out' do
 
-  context 'A seller can sign up' do
-    scenario 'a seller fills in a form to sign up' do
-      visit '/sellers/sign_up'
-      save_and_open_page
-      fill_in 'Name', with: 'Mike'
-      fill_in 'Email', with: 'mike@test.com'
-      fill_in 'Password', with: 'abc123'
-      fill_in 'Password confirmation', with: 'abc123'
-      click_button 'Sign up'
-      expect(current_path).to eq '/'
-    end
-  end
+  context "Seller signed in on the homepage" do
+    before do
+     visit('/')
+     click_link('Seller Sign Up')
+     fill_in 'Name', with: 'Mike'
+     fill_in 'Email', with: 'mike@test.com'
+     fill_in 'Password', with: 'abc123'
+     fill_in 'Password confirmation', with: 'abc123'
+     click_button('Sign up')
+   end
+
+   it "should see 'sign out' link" do
+     expect(page).to have_link('Sign Out')
+     expect(current_path).to eq('/offers')
+   end
+ end
 end
