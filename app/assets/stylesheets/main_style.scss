@@ -1,0 +1,15 @@
+$lightblue : #87e0fd; 	/* Here's how you assign the values to a variable */
+$darkblue : #2cafe3;
+$cpad: 20px;		/* Variables are not limited to colors, you can use it to store values too*/
+
+
+body {
+	background-image: -webkit-linear-gradient(top, $lightblue  42%, $darkblue 100%);
+	background-image: -moz-linear-gradient(top, $lightblue  42%, $darkblue 100%);
+	background-attachment:fixed;
+
+}
+
+.content {
+padding: $cpad;
+}

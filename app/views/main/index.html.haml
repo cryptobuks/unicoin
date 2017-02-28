@@ -1,0 +1,16 @@
+.welcome
+  %h1 Welcome to Unicoin
+
+.logo
+  =image_tag ('unicorn_logo_test.png')
+  -# %img(src='app/assets/images/unicorn_logo_test.png')
+
+.buyer
+  %h3 Buyers
+  %p= link_to "Buyer Login", new_buyer_session_path
+  %p= link_to "Buyer Sign Up", new_buyer_registration_path
+
+.seller
+  %h3 Sellers
+  %p= link_to "Seller Login", new_seller_session_path
+  %p= link_to "Seller Sign Up", new_seller_registration_path
