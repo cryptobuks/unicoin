@@ -8,9 +8,14 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.create(offers_params)
+    @offer = Offer.new(offers_params)
     @offer.update(status: 'Open')
-    redirect_to '/offers'
+    @offer.seller = current_seller
+    if @offer.save
+      redirect_to '/offers'
+    else
+      render :new
+    end
   end
 
   def update
@@ -18,6 +23,7 @@ class OffersController < ApplicationController
     @offer.update(status: 'Sold')
     @buyer_offer = Offer.find(params[:id])
     @buyer_offer.update(status: 'Sold')
+    @transaction = Transaction.create(buyer: current_buyer, seller: @offer.seller, offer: @offer)
     redirect_to offers_path
   end
 

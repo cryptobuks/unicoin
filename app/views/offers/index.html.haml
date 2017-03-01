@@ -8,7 +8,7 @@
         %h5 Offer Status: #{@buyer_offer.status}
         = button_to 'Buy now', offer_path(@buyer_offer), method: :put
       - elsif seller_signed_in?
-        - @offers.each do |offer|
+        - @offers.where(:status => 'Open').each do |offer|
           %h5 Price per coin: #{offer.price_per_coin}
           %h5 Number of coins: #{offer.number_of_coins}
           %h5 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}

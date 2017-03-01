@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227170959) do
+ActiveRecord::Schema.define(version: 20170301145915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20170227170959) do
     t.string   "status"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "seller_id"
+    t.index ["seller_id"], name: "index_offers_on_seller_id", using: :btree
   end
 
   create_table "sellers", force: :cascade do |t|
@@ -55,8 +57,24 @@ ActiveRecord::Schema.define(version: 20170227170959) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
+    t.integer  "wallet"
     t.index ["email"], name: "index_sellers_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_sellers_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "offer_id"
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.index ["buyer_id"], name: "index_transactions_on_buyer_id", using: :btree
+    t.index ["offer_id"], name: "index_transactions_on_offer_id", using: :btree
+    t.index ["seller_id"], name: "index_transactions_on_seller_id", using: :btree
+  end
+
+  add_foreign_key "offers", "sellers"
+  add_foreign_key "transactions", "buyers"
+  add_foreign_key "transactions", "offers"
+  add_foreign_key "transactions", "sellers"
 end
