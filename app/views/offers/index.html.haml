@@ -1,13 +1,19 @@
 .offers_box
   .row
-    - if @offers.any?
-      - @offers.each do |offer|
-        %h5 Price per coin: #{offer.price_per_coin}
-        %h5 Number of coins: #{offer.number_of_coins}
-        %h5 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}
-        %h5 Offer Status: #{offer.status}
-        = button_to 'Buy now', offer_path(offer), method: :put
-
+    - if @offers.find_by(:status => 'Open')? true : false
+      - if buyer_signed_in?
+        %h5 Price per coin: #{@buyer_offer.price_per_coin}
+        %h5 Number of coins: #{@buyer_offer.number_of_coins}
+        %h5 Total transaction amount: #{@buyer_offer.number_of_coins * @buyer_offer.price_per_coin}
+        %h5 Offer Status: #{@buyer_offer.status}
+        = button_to 'Buy now', offer_path(@buyer_offer), method: :put
+      - elsif seller_signed_in?
+        - @offers.each do |offer|
+          %h5 Price per coin: #{offer.price_per_coin}
+          %h5 Number of coins: #{offer.number_of_coins}
+          %h5 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}
+          %h5 Offer Status: #{offer.status}
+          = button_to 'Buy now', offer_path(offer), method: :put
     - else
       No offers yet
 
