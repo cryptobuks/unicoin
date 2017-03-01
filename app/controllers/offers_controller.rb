@@ -20,6 +20,8 @@ class OffersController < ApplicationController
   def update
     @offer = Offer.find(params[:id])
     @offer.update(status: 'Sold')
+    @transaction = Transaction.create(buyer: current_buyer, seller: @offer.seller, offer: @offer)
+    p @transaction
     redirect_to offers_path
   end
 
