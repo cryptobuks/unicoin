@@ -8,8 +8,13 @@ class OffersController < ApplicationController
   end
 
   def create
-    Offer.create(offers_params)
-    redirect_to '/offers'
+    @offer = Offer.new(offers_params)
+    @offer.seller = current_seller
+    if @offer.save
+      redirect_to '/offers'
+    else
+      render :new
+    end
   end
 
   def update
