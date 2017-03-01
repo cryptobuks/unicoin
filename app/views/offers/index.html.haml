@@ -2,11 +2,11 @@
   .row
     - if @offers.any?
       - @offers.each do |offer|
-        %h2 Price per coin: #{offer.price_per_coin}
-        %h2 Number of coins: #{offer.number_of_coins}
-        %h2 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}
-        %h2 Offer Status: #{offer.status}
-        = link_to 'Buy now', offer_path(offer), method: :put
+        %h5 Price per coin: #{offer.price_per_coin}
+        %h5 Number of coins: #{offer.number_of_coins}
+        %h5 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}
+        %h5 Offer Status: #{offer.status}
+        = button_to 'Buy now', offer_path(offer), method: :put
 
     - else
       No offers yet
