@@ -1,0 +1,8 @@
+%h1 Welcome #{@seller.name}
+%h2 Previous Transactions:
+- if @transactions.any?
+  - @transactions.each do |transaction|
+    %h2 Purchased by: #{transaction.buyer.name} on #{transaction.created_at.strftime('%d/%m/%y')}
+    %h2 Price per coin: #{transaction.offer.price_per_coin}
+    %h2 Number of coins: #{transaction.offer.number_of_coins}
+    %h2 Total transaction amount: #{transaction.offer.number_of_coins * transaction.offer.price_per_coin}

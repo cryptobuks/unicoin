@@ -17,10 +17,27 @@ feature 'Seller can sign in and out' do
      expect(page).to have_link('Sign Out')
      expect(current_path).to eq('/offers')
    end
+ end
+
+ describe 'seller profile' do
+
+   before do
+     create_transaction
+     sign_in_seller
+   end
 
    it "should be able to visit their profile" do
      click_link 'Profile'
-     expect(page).to have_content 'Mike the Seller'
+     expect(page).to have_content 'Welcome Seller'
    end
+
+   it 'should display sellers transactions' do
+     visit '/offers'
+     click_link 'Profile'
+     expect(page).to have_content 'Previous Transactions:'
+     expect(page).to have_content 'Purchased by: Buyer'
+     save_and_open_page
+   end
+
  end
 end
