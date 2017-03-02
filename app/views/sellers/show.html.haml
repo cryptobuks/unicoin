@@ -1,5 +1,6 @@
 %h1 Welcome #{@seller.name}
 %h2 Previous Transactions:
+%p= link_to "Update Profile", edit_seller_registration_path(@seller)
 - if @transactions.any?
   - @transactions.each do |transaction|
     %h2 Purchased by: #{transaction.buyer.name} on #{transaction.created_at.strftime('%d/%m/%y')}

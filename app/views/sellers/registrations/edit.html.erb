@@ -13,6 +13,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :phone_number %> <i>(Leave blank to disable two factor authentication)</i><br />
+    <%= f.number_field :phone_number, class: "form-control", placeholder: "e.g. 447555555555 or 1234234234234"  %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
