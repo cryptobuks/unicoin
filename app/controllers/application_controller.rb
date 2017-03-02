@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-
+  # before_action :authenticate_seller!
+  # before_action :authenticate_buyer!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :verify_seller!, unless: :devise_controller?
 
@@ -10,7 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def requires_verification?
-    session[:verified].nil? && !current_seller.phone_number.blank?
+    if current_seller
+      session[:verified].nil? && !current_seller.phone_number.blank?
+    else
+      false
+    end
   end
 
   def start_verification
@@ -24,13 +29,13 @@ class ApplicationController < ActionController::Base
     else
       sign_out current_seller
       redirect_to :new_seller_session, flash: {
-        error: 'Could not verify your number. Please contact support.'
+        alert: 'Could not verify your number. Please contact support.'
       }
     end
   end
 
    def configure_permitted_parameters
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phone_number])
      devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone_number])
    end
 

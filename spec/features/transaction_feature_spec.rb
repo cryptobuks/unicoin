@@ -13,7 +13,7 @@ feature "Transactions" do
     fill_in 'Password confirmation', with: 'abc123'
     click_button('Sign up')
     visit ('/offers')
-    click_link 'Buy now'
+    click_link_or_button 'Buy now'
   end
 
   scenario "A buyer buys a new offer, and is given a transaction receipt" do

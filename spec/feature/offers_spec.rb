@@ -24,8 +24,9 @@ feature 'offers' do
       @seller = Seller.create(name: 'Mike', email: 'mike@mike.com', password: 'abc123')
       Offer.create(number_of_coins: 1, price_per_coin: 10, status:'Open', seller: @seller)
       visit '/offers'
-      click_link 'Buy now'
-      expect(page).to have_content "Sold"
+      click_link_or_button 'Buy now'
+      save_and_open_page
+      expect(current_path).to eq('/offers')
     end
 
 end
