@@ -7,6 +7,8 @@
         %h5 Total transaction amount: #{@buyer_offer.number_of_coins * @buyer_offer.price_per_coin}
         %h5 Offer Status: #{@buyer_offer.status}
         = button_to 'Buy now', offer_path(@buyer_offer), method: :put
+        = link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), "https://www.paypal.me/unicoin"
+
       - elsif seller_signed_in?
         - @offers.where(:status => 'Open').each do |offer|
           %h5 Price per coin: #{offer.price_per_coin}
@@ -14,6 +16,7 @@
           %h5 Total transaction amount: #{offer.number_of_coins * offer.price_per_coin}
           %h5 Offer Status: #{offer.status}
           = button_to 'Buy now', offer_path(offer), method: :put
+          = link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), "https://www.paypal.me/unicoin"
     - else
       No offers yet
 
