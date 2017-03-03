@@ -7,6 +7,7 @@ end
 
 gem 'devise-bootstrap-views'
 
+gem 'haml_lint'
 gem 'haml'
 gem 'haml-rails'
 gem 'autoprefixer-rails'
